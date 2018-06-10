@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'corsheaders',
     'rest_framework',
+
+    'exchange_rate',
 ]
 
 MIDDLEWARE = [
@@ -124,4 +127,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 CORS_ORIGIN_ALLOW_ALL = True
-

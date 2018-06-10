@@ -9,7 +9,6 @@ class Currency(models.Model):
         (FIAT_CURRENCY, "Fiat"),
     )
     name = models.CharField(max_length=150)
-    code = models.CharField(max_length=10)
     symbol = models.CharField(max_length=10,
                               blank=True,
                               null=True,
@@ -22,9 +21,23 @@ class Currency(models.Model):
         return self.name
 
 
+class Code(models.Model):
+    code = models.CharField(max_length=10)
+    currency = models.ForeignKey(Currency,
+                                 on_delete=models.CASCADE)
+    exchange = models.ManyToManyField('Exchange')
+
+    def __str__(self):
+        return self.code
+
+
 class Exchange(models.Model):
     name = models.CharField(max_length=150)
     website = models.URLField()
+    api_url = models.URLField()
+
+    def __str__(self):
+        return self.name
 
 
 class ExchangeRate(models.Model):
